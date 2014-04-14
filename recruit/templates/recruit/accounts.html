@@ -1,0 +1,9 @@
+{% if accounts %}
+    <ul>
+    {% for account in accounts %}
+        <li><a href="/recruit/account/{{ account.accountName }}/">{{ account.accountName }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No accounts to list.</p>
+{% endif %}

@@ -1,0 +1,13 @@
+<p>
+    <h2>{{ account.accountName }}</h2>
+    Status: {{ account.get_status_display }}
+    <h3>EvE Accounts</h3>
+    <ul>
+    {% for eveaccount in eveaccounts %}
+        <li>{{ eveaccount}}
+        <p>API Key: {{ eveaccount.keyId }}</p>
+        <p>API Verification: {{ eveaccount.keyVerify }}</p>
+        </li>
+    {% endfor %}
+    <ul>
+</p>
