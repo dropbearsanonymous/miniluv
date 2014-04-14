@@ -23,7 +23,7 @@ class EveAccount(models.Model):
 
     # API key
     keyId = models.IntegerField(default=0)
-    keyVerify = models.IntegerField(default=0)
+    keyVerify = models.CharField(max_length=64)
 
     def __unicode__(self):
         return self.id

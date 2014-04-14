@@ -4,7 +4,10 @@
     <h3>EvE Accounts</h3>
     <ul>
     {% for eveaccount in eveaccounts %}
-        <li>{{ eveaccount}}
+        <li>{{ eveaccount.id }}&nbsp;&nbsp;
+            (<a href="http://ridetheclown.com/eveapi/audit.php?usid={{ eveaccount.keyId }}&apik={{ eveaccount.keyVerify }}">
+                API Jacknife
+            </a>)
         <p>API Key: {{ eveaccount.keyId }}</p>
         <p>API Verification: {{ eveaccount.keyVerify }}</p>
         </li>
