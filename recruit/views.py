@@ -14,7 +14,18 @@ def account(request, accountName):
         raise Http404
     return render(request, 'recruit/account.html', {'account': requestedAccount, 'eveaccounts': eveaccounts})
 
-def accountsList(request):
-    accounts = Account.objects.order_by('accountName')
+def accountsList(request, accountType):
+    if accountType == "all":
+        accounts = Account.objects.order_by('accountName')
+    elif accountType == "apps":
+        accounts = Account.objects.filter(status__iexact="A").order_by('id')
+    elif accountType == "members":
+        accounts = Account.objects.filter(status__iexact="M").order_by('accountName')
+    elif accountType == "rejects":
+        accounts = Account.objects.filter(status__iexact="R").order_by('accountName')
+    elif accountType == "spais":
+        accounts = Account.objects.filter(status__iexact="S").order_by('accountName')
+    else:
+        raise Http404
     context = {'accounts': accounts}
     return render(request, 'recruit/accounts.html', context) 
