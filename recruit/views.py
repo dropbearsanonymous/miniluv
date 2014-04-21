@@ -10,6 +10,9 @@ def account(request, accountName):
     try:
         requestedAccount = Account.objects.get(accountName__iexact=accountName)
         eveaccounts = requestedAccount.eveaccount_set.all()
+	if request.method == "POST":
+	    requestedAccount.status = request.POST['status']
+	    requestedAccount.save()
     except Account.DoesNotExist:
         raise Http404
     return render(request, 'recruit/account.html', {'account': requestedAccount, 'eveaccounts': eveaccounts})

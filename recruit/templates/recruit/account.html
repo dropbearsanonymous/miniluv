@@ -1,6 +1,18 @@
 <p>
     <h2>{{ account.accountName }}</h2>
-    Status: {{ account.get_status_display }}
+    <form action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        <input name="status" type="hidden">
+        <select name="memberstatus">
+	{% for status in account.STATUS_LABELS %}
+		{% if account.get_status_display == status.1 %}
+		    <option value="{{ status.0 }}" selected="selected">{{ status.1 }}</option>
+		{% else %}
+		    <option value="{{ status.0 }}">{{ status.1}}</option>
+		{% endif %}
+	{% endfor %}
+        </select>
+        <input type="submit" value="Set" />
     <h3>EvE Accounts</h3>
     <ul>
     {% for eveaccount in eveaccounts %}
